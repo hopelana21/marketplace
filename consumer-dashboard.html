@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет - Потребитель</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Маркет<span>плейс</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="services.html">Услуги</a></li>
+                    <li><a href="products.html">Товары</a></li>
+                    <li><a href="jobs.html">Вакансии</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <div id="userProfile" class="user-profile">
+                    <span id="userName"></span>
+                    <button class="btn btn-outline" id="logoutBtn">Выйти</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Личный кабинет покупателя</h1>
+                <button class="btn btn-primary" id="editProfile">Редактировать профиль</button>
+            </div>
+
+            <div class="dashboard-cards">
+                <div class="dashboard-card">
+                    <h3>Мои заказы</h3>
+                    <p>История ваших заказов и текущие заказы</p>
+                    <button class="btn btn-outline" onclick="window.location.href='orders.html'">Посмотреть заказы</button>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Избранное</h3>
+                    <p>Сохраненные товары и услуги</p>
+                    <button class="btn btn-outline" onclick="window.location.href='favorites.html'">Перейти в избранное</button>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>Настройки уведомлений</h3>
+                    <p>Управление рассылкой и уведомлениями</p>
+                    <button class="btn btn-outline" onclick="window.location.href='notifications.html'">Настроить</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if user is logged in and is a consumer
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser || currentUser.type !== 'consumer') {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            document.getElementById('userName').textContent = currentUser.name;
+        });
+    </script>
+</body>
+</html>

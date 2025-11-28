@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Маркетплейс Услуг и Товаров</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Маркет<span>плейс</span></a>
+            
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="services.html">Услуги</a></li>
+                    <li><a href="products.html">Товары</a></li>
+                    <li><a href="jobs.html">Вакансии</a></li>
+                    <li><a href="about.html">О нас</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <button class="btn btn-outline" id="loginBtn">Войти</button>
+                <button class="btn btn-primary" id="registerBtn">Регистрация</button>
+                <div id="userProfile" class="user-profile" style="display: none;">
+                    <span id="userName"></span>
+                    <button class="btn btn-outline" id="logoutBtn">Выйти</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Все услуги и товары в одном месте</h1>
+            <p>Найдите специалистов, купите товары или найдите работу на нашей универсальной платформе</p>
+            <button class="btn btn-secondary" id="startSearch">Начать поиск</button>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Популярные категории</h2>
+            <div class="categories-grid">
+                <div class="category-card" data-category="jobs">
+                    <div class="category-icon">💼</div>
+                    <div class="category-info">
+                        <h3>Работа</h3>
+                        <p>Найдите подходящую вакансию или сотрудника</p>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-category="services">
+                    <div class="category-icon">🛠️</div>
+                    <div class="category-info">
+                        <h3>Услуги</h3>
+                        <p>Найдите специалистов для выполнения задач</p>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-category="products">
+                    <div class="category-icon">🛒</div>
+                    <div class="category-info">
+                        <h3>Товары</h3>
+                        <p>Покупайте и продавайте товары разных категорий</p>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-category="realestate">
+                    <div class="category-icon">🏠</div>
+                    <div class="category-info">
+                        <h3>Недвижимость</h3>
+                        <p>Аренда и продажа недвижимости</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Modal -->
+    <div class="modal" id="registrationModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Регистрация</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="tabs">
+                <div class="tab active" data-tab="consumer">Потребитель</div>
+                <div class="tab" data-tab="provider">Поставщик услуг</div>
+            </div>
+            
+            <!-- Consumer Registration Form -->
+            <div class="tab-content active" id="consumer-tab">
+                <form id="consumerForm">
+                    <div class="form-group">
+                        <label for="consumerName">Имя</label>
+                        <input type="text" id="consumerName" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="consumerEmail">Email</label>
+                        <input type="email" id="consumerEmail" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="consumerPhone">Телефон</label>
+                        <input type="tel" id="consumerPhone" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="consumerPassword">Пароль</label>
+                        <input type="password" id="consumerPassword" class="form-control" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Зарегистрироваться</button>
+                </form>
+            </div>
+            
+            <!-- Provider Registration Form -->
+            <div class="tab-content" id="provider-tab">
+                <form id="providerForm">
+                    <div class="form-group">
+                        <label for="providerName">Имя или название компании</label>
+                        <input type="text" id="providerName" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="providerEmail">Email</label>
+                        <input type="email" id="providerEmail" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="providerPhone">Телефон</label>
+                        <input type="tel" id="providerPhone" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="providerCategory">Категория услуг</label>
+                        <select id="providerCategory" class="form-control" required>
+                            <option value="">Выберите категорию</option>
+                            <option value="it">IT и программирование</option>
+                            <option value="design">Дизайн</option>
+                            <option value="marketing">Маркетинг</option>
+                            <option value="repair">Ремонт и строительство</option>
+                            <option value="education">Образование</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="providerDescription">Описание услуг</label>
+                        <textarea id="providerDescription" class="form-control" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="providerPassword">Пароль</label>
+                        <input type="password" id="providerPassword" class="form-control" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Зарегистрироваться</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Вход в систему</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">Пароль</label>
+                    <input type="password" id="loginPassword" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="rememberMe"> Запомнить меня
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Войти</button>
+                
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="#" id="forgotPassword">Забыли пароль?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>О компании</h3>
+                    <ul>
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="partners.html">Партнеры</a></li>
+                        <li><a href="career.html">Карьера</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Помощь</h3>
+                    <ul>
+                        <li><a href="help-buyer.html">Помощь покупателю</a></li>
+                        <li><a href="help-seller.html">Помощь продавцу</a></li>
+                        <li><a href="support.html">Центр поддержки</a></li>
+                        <li><a href="rules.html">Правила платформы</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Сервисы</h3>
+                    <ul>
+                        <li><a href="orders.html">Мои заказы</a></li>
+                        <li><a href="favorites.html">Избранное</a></li>
+                        <li><a href="subscriptions.html">Рассылка</a></li>
+                        <li><a href="purchases.html">Купленные товары</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Свяжитесь с нами</h3>
+                    <ul>
+                        <li>Email: info@marketplace.ru</li>
+                        <li>Телефон: +7 (800) 123-45-67</li>
+                        <li>Адрес: Москва, ул. Примерная, д. 1</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 Маркетплейс. Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
